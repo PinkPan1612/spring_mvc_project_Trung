@@ -1,0 +1,153 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="bg-light py-3">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="h3">Tropical Favorites</h1>
+                <nav>
+                    <a href="#" class="text-dark mx-2">Home</a>
+                    <a href="#" class="text-dark mx-2">About</a>
+                    <a href="#" class="text-dark mx-2">Shop</a>
+                    <a href="#" class="text-dark mx-2">Location</a>
+                    <a href="#" class="text-dark mx-2">Contact Us</a>
+                </nav>
+                <div>
+                    <a href="#" class="text-dark mx-2"><i class="fas fa-user"></i> Login</a>
+                    <a href="#" class="text-dark mx-2"><i class="fas fa-shopping-cart"></i> Cart</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-left">
+                    <h2 class="display-4 text-danger">Tropical Favorites</h2>
+                    <p class="lead text-muted">The taste of relaxation under the warm sunshine in front of you. Enjoy
+                        the refreshing blend of drinks as you relax by the water. Indulge and dive into our tropical
+                        favorites.</p>
+                    <a href="#" class="btn btn-danger btn-lg">Order Now</a>
+                </div>
+                <div class="col-md-6 mt-4 mt-md-0">
+                    <img src="https://storage.googleapis.com/a1aa/image/57cOaxiClV7GyP6ebYfb_t-5x1wgLp5Rm8rsmUEKLS8.jpg"
+                        class="img-fluid rounded" alt="A refreshing tropical drink by the pool">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Most Popular Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-danger mb-4">Most Popular</h2>
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="https://storage.googleapis.com/a1aa/image/xRjXwz3ULNJ5Jmhu9vi60PCNyqUGR8nhTqV3buvsjIA.jpg"
+                        class="rounded-circle mb-3" alt="Blue Lemon & Kiwi drink" width="150" height="150">
+                    <h5 class="text-muted">Blue Lemon & Kiwi</h5>
+                    <p class="text-muted">$10.00</p>
+                    <a href="#" class="btn btn-danger">Order Now</a>
+                </div>
+                <div class="col-md-4 text-center">
+                    <img src="https://storage.googleapis.com/a1aa/image/TEaYH-T_fjdfM2XqFnKwqGo40Q2fN5Ri4FfIn-DlWGQ.jpg"
+                        class="rounded-circle mb-3" alt="Rose Twist drink" width="150" height="150">
+                    <h5 class="text-muted">Rose Twist</h5>
+                    <p class="text-muted">$10.00</p>
+                    <a href="#" class="btn btn-danger">Order Now</a>
+                </div>
+                <div class="col-md-4 text-center">
+                    <img src="https://storage.googleapis.com/a1aa/image/9eip0UAXwCvm4Jp-tifuqZZ9AbiOCc-VSstfPG6DHhw.jpg"
+                        class="rounded-circle mb-3" alt="Green Kiwi drink" width="150" height="150">
+                    <h5 class="text-muted">Green Kiwi</h5>
+                    <p class="text-muted">$10.00</p>
+                    <a href="#" class="btn btn-danger">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials Section -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center text-teal mb-4">What our Customers say</h2>
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <p class="text-muted">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
+                            erat a ante."</p>
+                        <p class="text-muted">- MILLER HOLLER</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <p class="text-muted">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
+                            erat a ante."</p>
+                        <p class="text-muted">- MILLER HOLLER</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <p class="text-muted">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
+                            erat a ante."</p>
+                        <p class="text-muted">- MILLER HOLLER</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Our Newsletter Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-danger mb-4">Join Our Newsletter</h2>
+            <p class="text-center text-muted mb-4">Stay updated with our latest releases!</p>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form class="bg-light p-4 rounded shadow-sm">
+                        <div class="form-group">
+                            <label for="name" class="text-muted">Name:</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="text-muted">E-mail:</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-block">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-light py-3">
+        <div class="container text-center">
+            <div class="d-flex justify-content-center mb-3">
+                <a href="#" class="text-muted mx-2">Our Company</a>
+                <a href="#" class="text-muted mx-2">Privacy Policy</a>
+                <a href="#" class="text-muted mx-2">Terms & Conditions</a>
+                <a href="#" class="text-muted mx-2">Contact Us</a>
+            </div>
+            <p class="text-muted">© 2021 Bay Tropikelle All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+
+</html>
