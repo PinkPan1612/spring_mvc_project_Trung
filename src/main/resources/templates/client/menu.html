@@ -65,7 +65,11 @@
                                     th:src="@{'/uploads/img/' +  ${product.image}}" />
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <p th:text=" ${product.name}"></p>
+                                        <a th:href="@{/detail/{id}(id=${product.id})}" class="text-dark text-decoration-none">
+                                            <strong>
+                                                <p th:text=" ${product.name}"></p>
+                                            </strong>
+                                        </a>
 
                                     </h5>
                                     <p class="card-text">
