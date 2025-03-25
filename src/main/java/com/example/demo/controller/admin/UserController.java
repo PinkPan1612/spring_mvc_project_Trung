@@ -2,6 +2,7 @@ package com.example.demo.controller.admin;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,10 +25,12 @@ public class UserController {
 
     private final UserService userService;
     private RoleService roleService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService, RoleService roleService) {
+    public UserController(UserService userService, RoleService roleService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.roleService = roleService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/admin/home")
@@ -73,6 +76,8 @@ public class UserController {
             model.addAttribute("roles", roles);
             return "admin/user/create";
         }
+        String hashPassword = this.passwordEncoder.encode(user.getPassword());
+        user.setPassword(hashPassword);
         user.setRole(this.userService.getRole(user.getRole().getRole_name()));
 
         this.userService.saveUser(user);
@@ -99,9 +104,9 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             System.out.println("Validation failed. Errors:" + bindingResult.getErrorCount());
             // Duyệt qua danh sách lỗi
-            for (FieldError error : bindingResult.getFieldErrors()) {
-                System.out.println("Field: " + error.getField() + " - Message: " + error.getDefaultMessage());
-            }
+            // for (FieldError error : bindingResult.getFieldErrors()) {
+            //     System.out.println("Field: " + error.getField() + " - Message: " + error.getDefaultMessage());
+            // }
             List<Role> roles = this.roleService.getAllRole();
             model.addAttribute("user", user);
             model.addAttribute("id", user.getId());
@@ -109,6 +114,7 @@ public class UserController {
             return "admin/user/editUser";
         }
         if (this.userService.getUserByID(user.getId()) != null) {
+            
             User OUser = this.userService.getUserByID(user.getId());
 
             if (user != null) {

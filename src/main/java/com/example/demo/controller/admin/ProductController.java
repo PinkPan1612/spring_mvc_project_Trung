@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.model.Product;
 import com.example.demo.service.ProductService;
@@ -30,34 +31,90 @@ public class ProductController {
         this.productService = productService;
     }
 
+    // mở trang create
     @GetMapping("/admin/products/create")
     public String getProductPage(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
-        return "/admin/product/create";
+        return "admin/product/create";
     }
 
+    // post create
     @PostMapping("/admin/products/create")
-    public String postCreateProduct(@ModelAttribute("newProduct") @Valid Product newProduct,
+    public String postCreateProduct(@ModelAttribute("product") @Valid Product newProduct,
             BindingResult newProductBindingResult,
-            @RequestParam("productFile") MultipartFile file) {
+            @RequestParam("imageProduct") MultipartFile file) {
         // Kiểm tra nếu có lỗi validation
         if (newProductBindingResult.hasErrors()) {
-            System.out.println("Validation failed. Errors:");
+            System.out.println("Validation failed. Errors:" + newProductBindingResult.getErrorCount());
+            // Duyệt qua danh sách lỗi
+            for (FieldError error : newProductBindingResult.getFieldErrors()) {
+                System.out.println("Field: " + error.getField() + " - Message: " + error.getDefaultMessage());
+            }
             return "admin/product/create";
         }
-        String product_image = this.uploadService.handleSaveUploadFile(file, "product");
+        // lấy đường dẫn hình
+        String product_image = this.uploadService.handleSaveUploadFile(file, "img");
         newProduct.setImage(product_image);
         this.productService.saveProduct(newProduct);
 
         return "redirect:/admin/products";
     }
 
+    // mở form list
     @GetMapping("/admin/products")
-    public String getMethodName(Model model) {
+    public String getformList(Model model) {
         List<Product> products = this.productService.getAllPr();
         model.addAttribute("products", products);
-        return "/admin/product/show";
+        return "admin/product/show";
+    }
+
+    // mở form detail
+    @GetMapping("/admin/products/detail/{id}")
+    public String getformDetail(Model model, @PathVariable long id) {
+        Product product = this.productService.getProductByID(id);
+        model.addAttribute("id", id);
+        model.addAttribute("productDetail", product);
+        return "admin/product/detail";
+    }
+
+    // mở form detail
+    @GetMapping("/admin/products/delete/{id}")
+    public String getdeleteProduct(Model model, @PathVariable long id) {
+        this.productService.deleteProductserrvice(id);
+        return "redirect:/admin/products";
+    }
+
+    // mở form edit
+    @GetMapping("/admin/products/update/{id}")
+    public String getEditProductPage(Model model, @PathVariable long id) {
+        Product product = this.productService.getProductByID(id);
+        model.addAttribute("id", id);
+        model.addAttribute("product", product);
+        return "admin/product/edit";
+    }
+
+    // chỉnh sửa
+    @PostMapping("/admin/products/update")
+    public String postUpdateProduct(@ModelAttribute("product") @Valid Product newProduct,
+            BindingResult newProductBindingResult,
+            @RequestParam("imageProduct") MultipartFile file) {
+        // Kiểm tra nếu có lỗi validation
+        if (newProductBindingResult.hasErrors()) {
+            System.out.println("Validation failed. Errors:" + newProductBindingResult.getErrorCount());
+            // Duyệt qua danh sách lỗi
+            for (FieldError error : newProductBindingResult.getFieldErrors()) {
+                System.out.println("Field: " + error.getField() + " - Message: " + error.getDefaultMessage());
+            }
+
+            return "admin/product/edit";
+        }
+        // lấy đường dẫn hình
+        String product_image = this.uploadService.handleSaveUploadFile(file, "img");
+        newProduct.setImage(product_image);
+        this.productService.saveProduct(newProduct);
+
+        return "redirect:/admin/products";
     }
 
 }

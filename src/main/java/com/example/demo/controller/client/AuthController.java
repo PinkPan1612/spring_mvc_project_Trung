@@ -10,4 +10,9 @@ public class AuthController {
         return "denyPage";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "auth/login";
+    }
+
 }

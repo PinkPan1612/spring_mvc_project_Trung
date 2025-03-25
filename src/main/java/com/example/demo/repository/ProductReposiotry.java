@@ -11,4 +11,8 @@ import com.example.demo.model.Product;
 public interface ProductReposiotry extends JpaRepository<Product, Long> {
     List<Product> findAll();
 
+    Product findOneById(long id);
+
+    void deleteById(long id);
+
 }

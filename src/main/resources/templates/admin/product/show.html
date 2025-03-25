@@ -17,7 +17,7 @@
                 <div class="col-md-12">
                     <h1>Danh sách sản phẩm</h1>
                     <hr>
-                    <a th:href="@{/admin/users/create}">
+                    <a th:href="@{/admin/products/create}">
                         <button class="btn btn-primary">Thêm sản phẩm</button>
                     </a>
                     <table class="table table-dart">
@@ -33,23 +33,20 @@
                         <tbody>
                             <tr th:each="product:${products}">
                                 <th scope="row" th:text="${product.id}"></th>
-                                <td th:text="${product.fullName}"></td>
-                                <td th:text="${product.email}"></td>
-                                <td th:text="${product.role.role_name}"></td>
+                                <td th:text="${product.name}"></td>
+                                <td th:text="${product.quantity}"></td>
+                                <td th:text="${product.price}"></td>
                                 <td>
                                     <a class="btn btn-success mx-2"
-                                        th:href="@{/admin/products/detail/{id}(id=${user.id})}">
-                                        <!-- <i class="fa-solid fa-pencil text-info"></i> -->
+                                        th:href="@{/admin/products/detail/{id}(id=${product.id})}">
                                         Chi tiết
                                     </a>
                                     <a class="btn btn-warning mx-2"
-                                        th:href="@{/admin/productrs/update/{id}(id=${user.id})}">
-                                        <!-- <i class="fa-solid fa-pencil text-info"></i> -->
+                                        th:href="@{/admin/products/update/{id}(id=${product.id})}">
                                         Chỉnh sửa
                                     </a>
-                                    <a class="btn btn-danger" th:href="@{/admin/products/delete/{id}(id=${user.id})}"
+                                    <a class="btn btn-danger" th:href="@{/admin/products/delete/{id}(id=${product.id})}"
                                         onclick="if(!(confirm('Are you sure you want to this student'))) return false">
-                                        <!-- <i class="fa-solid fa-trash text-danger"></i> -->
                                         Xóa
                                     </a>
                                 </td>

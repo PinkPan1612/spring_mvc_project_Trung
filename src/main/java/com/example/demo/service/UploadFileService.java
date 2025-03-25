@@ -7,15 +7,8 @@ import java.io.FileOutputStream;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import jakarta.servlet.ServletContext;
-
 @Service
 public class UploadFileService {
-    private final ServletContext servletContext;
-
-    public UploadFileService(ServletContext servletContext) {
-        this.servletContext = servletContext;
-    }
 
     public String handleSaveUploadFile(MultipartFile file, String targetFolder) {
         // don't save file
@@ -23,11 +16,12 @@ public class UploadFileService {
             return "";
         }
         // relative path: absolute Path
-        String rootPath = this.servletContext.getRealPath("/client/img");
+        String rootPath = System.getProperty("user.dir") + "/src/main/resources/uploads";
+
         String finalName = "";
         try {
-            byte[] bytes = file.getBytes();// lấy dữ liệu dưới dạng byte
-            // tìm nơi lưu file( trỏ tới thư mục avatar),
+            byte[] bytes = file.getBytes();
+            // tìm nơi lưu file(),
             // sparator là dấu /
             File dir = new File(rootPath + File.separator + targetFolder);
             if (!dir.exists()) // kiểm tra tồn tại

@@ -35,6 +35,17 @@
         .text-custom-red {
             color: #e74c3c;
         }
+
+        .card-img-top {
+            width: 100%;
+            /* Giữ chiều rộng đầy đủ của card */
+            height: 200px;
+            /* Định chiều cao cố định */
+            object-fit: cover;
+            /* Cắt ảnh để vừa với khung mà không bị méo */
+            border-radius: 10px;
+            /* Bo góc nhẹ cho ảnh */
+        }
     </style>
 </head>
 
@@ -47,106 +58,29 @@
                         Our Menu
                     </h1>
                     <div class="row mt-4">
-                        <div class="col-md-4 mb-4">
+
+                        <div class="col-md-4 mb-4" th:each="product: ${products}">
                             <div class="card">
-                                <img alt="Green Kiwi drink" class="card-img-top" src="https://placehold.co/300x300" />
+                                <img alt="imageProduct!!" class="card-img-top"
+                                    th:src="@{'/uploads/img/' +  ${product.image}}" />
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        Green Kiwi
+                                        <p th:text=" ${product.name}"></p>
+
                                     </h5>
                                     <p class="card-text">
-                                        $10.00
+                                    <p th:text="${product.price}"> đ</p>
                                     </p>
-                                    <a class="btn btn-danger" href="#">
-                                        Order Now
-                                    </a>
+                                    <form action="/products/order/{id}(id=${product.id})" method="post">
+                                        <button class="btn btn-danger" type="submit">
+                                            Order Now
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img alt="Pineapple Refresher drink" class="card-img-top"
-                                    src="https://placehold.co/300x300" />
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        Pineapple Refresher
-                                    </h5>
-                                    <p class="card-text">
-                                        $10.00
-                                    </p>
-                                    <a class="btn btn-danger" href="#">
-                                        Order Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img alt="Rose Twist drink" class="card-img-top" src="https://placehold.co/300x300" />
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        Rose Twist
-                                    </h5>
-                                    <p class="card-text">
-                                        $10.00
-                                    </p>
-                                    <a class="btn btn-danger" href="#">
-                                        Order Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img alt="Blue Lemon &amp; Kiwi drink" class="card-img-top"
-                                    src="https://placehold.co/300x300" />
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        Blue Lemon &amp; Kiwi
-                                    </h5>
-                                    <p class="card-text">
-                                        $10.00
-                                    </p>
-                                    <a class="btn btn-danger" href="#">
-                                        Order Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img alt="Mango Delight drink" class="card-img-top"
-                                    src="https://placehold.co/300x300" />
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        Mango Delight
-                                    </h5>
-                                    <p class="card-text">
-                                        $10.00
-                                    </p>
-                                    <a class="btn btn-danger" href="#">
-                                        Order Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img alt="Strawberry Bliss drink" class="card-img-top"
-                                    src="https://placehold.co/300x300" />
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        Strawberry Bliss
-                                    </h5>
-                                    <p class="card-text">
-                                        $10.00
-                                    </p>
-                                    <a class="btn btn-danger" href="#">
-                                        Order Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+
+
                     </div>
                 </div>
             </section>

@@ -39,14 +39,33 @@
                 <p style="color: red;" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></p>
 
             </div>
-            
+            <div class="mb-3">
+                <label class="form-label">Default file input example</label>
+                <input class="form-control" type="file" id="imageUpload" name="imageProduct">
+            </div>
+
             <div class="col-12 mb-3">
                 <!-- dislay- none: ẩn tag cho đên khi được block -->
                 <img style="max-height: 250px; display: none;" alt="product preview" id="productPreview" />
             </div>
             <button type="submit" class="btn btn-primary">Lưu</button>
-            <a th:href="@{/admin/users}" class="btn btn-secondary">Hủy</a>
+            <a th:href="@{/admin/products}" class="btn btn-secondary">Hủy</a>
         </form>
+        <script>
+            document.getElementById("imageUpload").addEventListener("change", function (event) {
+                let preview = document.getElementById("productPreview");
+                let file = event.target.files[0];
+
+                if (file) {
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        preview.src = e.target.result;
+                        preview.style.display = "block";
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        </script>
 
     </div>
 </body>

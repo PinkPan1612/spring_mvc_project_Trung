@@ -24,4 +24,15 @@ public class ProductService {
     public List<Product> getAllPr() {
         return this.productReposiotry.findAll();
     }
+
+    // get by id
+    public Product getProductByID(long id) {
+        return this.productReposiotry.findOneById(id);
+    }
+
+    //delete by id
+    public void deleteProductserrvice(long id) {
+        this.productReposiotry.deleteById(id);
+        ;
+    }
 }
