@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-import java.util.List;
-
 //javax
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,11 +7,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 // import vn.hoidanit.laptopshop.service.validator.StrongPassword;
 
@@ -28,19 +26,19 @@ public class User {
     @Email(message = "Email không đúng định dạng", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
     private String email;
 
-    @NotNull(message = "Mật khẩu không được để trống")
-    // @StrongPassword(message = "Mật khẩu không đủ mạnh. Vui lòng nhập ít nhất 8 ký
-    // tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.")
+    @NotBlank(message = "Mật khẩu không được để trống")
     private String password;
 
-    @NotNull(message = "Tên đầy đủ không được để trống")
+    @NotBlank(message = "Tên đầy đủ không được để trống")
     @Size(min = 2, message = "Tên đầy đủ phải có ít nhất 2 ký tự")
     private String fullName;
 
+    @NotBlank(message = "Cần điền địa chỉ nhà")
     private String address;
-    private String phone;
 
-    private String avatar;
+    @NotBlank(message = "Cần điền đẩy đủ số điện thoại")
+    @Pattern(regexp = "^0[0-9]{9}$", message = "Số điện thoại phải bắt đầu bằng số 0 và có đúng 10 chữ số.")
+    private String phone;
 
     @OneToOne(mappedBy = "user")
     private Cart cart;
@@ -59,14 +57,6 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
     }
 
     public long getId() {
@@ -115,12 +105,6 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", email=" + email + ", password=" + password + ", fullName=" + fullName
-                + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + "]";
     }
 
     public Cart getCart() {

@@ -32,16 +32,10 @@ public class Product {
     @Column(columnDefinition = "MEDIUMTEXT")
     private String detailDesc;
 
-    @NotBlank(message = "Không được để trống mô tả ngắn")
-    private String shortDesc;
-
     @NotNull
     @Min(value = 1, message = "Giá phải lớn hơn 0")
     private long quantity;
 
-    private long sold;
-    private String factory;
-    private String target;
     private String image;
 
     // Order_detail
@@ -88,14 +82,6 @@ public class Product {
         this.detailDesc = detailDesc;
     }
 
-    public String getShortDesc() {
-        return shortDesc;
-    }
-
-    public void setShortDesc(String shortDesc) {
-        this.shortDesc = shortDesc;
-    }
-
     public long getQuantity() {
         return quantity;
     }
@@ -104,35 +90,10 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public long getSold() {
-        return sold;
-    }
-
-    public void setSold(long sold) {
-        this.sold = sold;
-    }
-
-    public String getFactory() {
-        return factory;
-    }
-
-    public void setFactory(String factory) {
-        this.factory = factory;
-    }
-
-    public String getTarget() {
-        return target;
-    }
-
-    public void setTarget(String target) {
-        this.target = target;
-    }
-
     @Override
     public String toString() {
-        return "Product [id=" + id + ", name=" + name + ", price=" + price + ", image=" + image + ", detailDesc="
-                + detailDesc + ", shortDesc=" + shortDesc + ", quantity=" + quantity + ", sold=" + sold + ", factory="
-                + factory + ", target=" + target + "]";
+        return "Product [id=" + id + ", name=" + name + ", price=" + price + ", detailDesc=" + detailDesc
+                + ", quantity=" + quantity + ", image=" + image + "]";
     }
 
 }
