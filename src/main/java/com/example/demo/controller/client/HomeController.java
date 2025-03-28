@@ -46,4 +46,14 @@ public class HomeController {
         model.addAttribute("products", products);
         return "client/menu";
     }
+
+    @GetMapping("/location")
+    public String getLocation() {
+        return "client/location";
+    }
+    
+    @GetMapping("/contact")
+    public String getContact() {
+        return "client/contact";
+    }
 }
